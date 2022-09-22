@@ -20,24 +20,17 @@ fi
 # CALCULATIONS
 hosts=$(( 2**(32-$mask) ))
 subnets=$(( 2**($mask-24) ))
-
-echo "IP address: ${split[0]}.${split[1]}.${split[2]}.${split[3]}"
-echo "Subnet Mask: $mask"
-echo "Number of hosts: $hosts"
-echo "Number of subnets: $subnets"
-
 last_net=0 
 last_broadcast=$((hosts-1))
 
-echo "$last_broadcast"
 main() {
     echo "| ID | ENDEREÇO_DE_REDE | PRIMEIRO_HOST | ÚLTIMO_HOST | BROADCAST |"
-    i=0
+    i=1
     while [ $i -le $subnets ];
     do
         first_host=$(( $last_net + 1 ))
         last_host=$(( $last_broadcast - 1 ))
-        
+
         echo "| ${i} | ${split[0]}.${split[1]}.${split[2]}.${last_net} | ${split[0]}.${split[1]}.${split[2]}.${first_host} | ${split[0]}.${split[1]}.${split[2]}.${last_host} | ${split[0]}.${split[1]}.${split[2]}.${last_broadcast} |";   
 
         last_net=$((last_net + hosts))
