@@ -1,5 +1,14 @@
 #!/bin/bash
 
+clear;
+echo "--------------------------------"
+echo "SubnetDotSh -- Subnet Calculator"
+echo "by: <ogabrielpereira@pm.me >"
+echo "--------------------------------"
+echo "Type 1 to convert from /24 to /25../32."
+echo "Type 2 to find only ip range."
+read -p "Choice: " c
+
 conv() {
     # IP HANDLING
     read -p "IP Address: " ip 
@@ -82,4 +91,10 @@ find() {
     done
 }
 
-find | column -t
+if [ $c -eq 1 ]; then
+    conv
+elif [ $c -eq 2 ]; then
+    find
+else
+    echo "Invalid choice"
+fi
