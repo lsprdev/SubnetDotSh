@@ -27,8 +27,9 @@ echo "Number of hosts: $hosts"
 echo "Number of subnets: $subnets"
 
 last_net=0 
-last_broadcast=31 
+last_broadcast=$((hosts-1))
 
+echo "$last_broadcast"
 main() {
     echo "| ID | ENDEREÇO_DE_REDE | PRIMEIRO_HOST | ÚLTIMO_HOST | BROADCAST |"
     i=0
@@ -36,11 +37,11 @@ main() {
     do
         first_host=$(( $last_net + 1 ))
         last_host=$(( $last_broadcast - 1 ))
-
+        
         echo "| ${i} | ${split[0]}.${split[1]}.${split[2]}.${last_net} | ${split[0]}.${split[1]}.${split[2]}.${first_host} | ${split[0]}.${split[1]}.${split[2]}.${last_host} | ${split[0]}.${split[1]}.${split[2]}.${last_broadcast} |";   
 
-        last_net=$((last_net + 32))
-        last_broadcast=$((last_broadcast + 32))
+        last_net=$((last_net + hosts))
+        last_broadcast=$((last_broadcast + hosts))
         
         i=$(($i+1))
     done
