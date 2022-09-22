@@ -82,7 +82,6 @@ find() {
         if [ ${split[3]} -ge $last_net ] && [ ${split[3]} -le $last_broadcast ]; then
             echo "| ${i} | ${split[0]}.${split[1]}.${split[2]}.${last_net} | ${split[0]}.${split[1]}.${split[2]}.${first_host} | ${split[0]}.${split[1]}.${split[2]}.${last_host} | ${split[0]}.${split[1]}.${split[2]}.${last_broadcast} |";   
         fi
-        # echo "| ${i} | ${split[0]}.${split[1]}.${split[2]}.${last_net} | ${split[0]}.${split[1]}.${split[2]}.${first_host} | ${split[0]}.${split[1]}.${split[2]}.${last_host} | ${split[0]}.${split[1]}.${split[2]}.${last_broadcast} |";   
 
         last_net=$((last_net + hosts))
         last_broadcast=$((last_broadcast + hosts))
@@ -92,9 +91,9 @@ find() {
 }
 
 if [ $c -eq 1 ]; then
-    conv
+    conv | column -t
 elif [ $c -eq 2 ]; then
-    find
+    find | column -t
 else
     echo "Invalid choice"
 fi
