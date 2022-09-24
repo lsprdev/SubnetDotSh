@@ -57,6 +57,10 @@ fi
 
 # SUBNET MASK HANDLING
 read -p "Máscara de Sub-rede(CIDR)(Padrão: 24): " mask
+if [ -z $mask ]; then
+    echo "Máscara padrão selecionada."
+    mask=24
+fi
 if [ $mask -gt 32 ] || [ $mask -lt 24 ]; then
     echo "Mascara de Sub-rede Inválida!"
     exit 1
