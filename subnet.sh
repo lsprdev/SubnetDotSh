@@ -1,10 +1,10 @@
 #!/bin/bash
 
 clear;
-echo "--------------------------------"
-echo "SubnetDotSh -- Subnet Calculator"
-echo "by: <ogabrielpereira@pm.me >"
-echo "--------------------------------"
+echo "----------------------------------------";
+echo "--- SubnetDotSh -- Subnet Calculator ---";
+echo "----- by: <ogabrielpereira@pm.me > -----";
+echo "----------------------------------------";
 echo "Type 1 to convert from /24 to /25../32."
 echo "Type 2 to find only ip range."
 read -p "Choice: " c
