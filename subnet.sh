@@ -2,26 +2,26 @@
 
 clear;
 echo "----------------------------------------";
-echo "--- SubnetDotSh -- Subnet Calculator ---";
-echo "----- by: <ogabrielpereira@pm.me > -----";
+echo "--- SubnetDotSh --- Calculadora IPv4 ---";
+echo "----- por: <ogabrielpereira@pm.me> -----";
 echo "----------------------------------------";
-echo "Type 1 to convert from /24 to /25../32."
-echo "Type 2 to find only ip range."
-read -p "Choice: " c
+echo "Digite 1 para converter de /24 para /25../32."
+echo "Digite 2 para achar apenas as informações do endereço ip informado."
+read -p "Opção: " c
 
     # IP HANDLING
-    read -p "IP Address: " ip 
+    read -p "Endereço IP: " ip 
     IFS="." 
     read -a split <<< "$ip" # Split the IP address into 4 octets
     if [ ${#split[*]} -lt 4 ] || [ ${#split[*]} -gt 4 ] ; then
-        echo "Invalid IP"
+        echo "IP Inválido!"
         exit 1
     fi
 
     # SUBNET MASK HANDLING
-    read -p "Subnet Mask(CIDR): " mask
+    read -p "Máscara de Sub-rede(CIDR): " mask
     if [ $mask -gt 32 ] || [ $mask -lt 24 ]; then
-        echo "Invalid mask"
+        echo "Mascara de Sub-rede Inválida!"
         exit 1
     fi
 
@@ -31,6 +31,12 @@ read -p "Choice: " c
     last_net=0 
     last_broadcast=$((hosts-1))
 
+    # OUTPUTS
+    clear;
+    echo "Endereço IP: $ip"
+    echo "Nova Máscara de sub-rede: 255.255.255.$((256-$hosts)) = /$mask"
+    echo "Número de hosts por sub-rede: $((hosts-2))"
+    echo "Número de sub-redes: $subnets"
 conv() {
 
     echo "| ID | ENDEREÇO_DE_REDE | PRIMEIRO_HOST | ÚLTIMO_HOST | BROADCAST |"
@@ -73,5 +79,5 @@ if [ $c -eq 1 ]; then
 elif [ $c -eq 2 ]; then
     find | column -t
 else
-    echo "Invalid choice"
+    echo "Opção inválida!"
 fi
