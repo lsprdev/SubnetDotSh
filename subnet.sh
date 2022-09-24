@@ -9,12 +9,10 @@ echo "Type 1 to convert from /24 to /25../32."
 echo "Type 2 to find only ip range."
 read -p "Choice: " c
 
-conv() {
     # IP HANDLING
     read -p "IP Address: " ip 
     IFS="." 
     read -a split <<< "$ip" # Split the IP address into 4 octets
-
     if [ ${#split[*]} -lt 4 ] || [ ${#split[*]} -gt 4 ] ; then
         echo "Invalid IP"
         exit 1
@@ -32,6 +30,8 @@ conv() {
     subnets=$(( 2**($mask-24) ))
     last_net=0 
     last_broadcast=$((hosts-1))
+
+conv() {
 
     echo "| ID | ENDEREÇO_DE_REDE | PRIMEIRO_HOST | ÚLTIMO_HOST | BROADCAST |"
     i=1
@@ -50,28 +50,6 @@ conv() {
 }
 
 find() {
-    # IP HANDLING
-    read -p "IP Address: " ip 
-    IFS="." 
-    read -a split <<< "$ip" # Split the IP address into 4 octets
-
-    if [ ${#split[*]} -lt 4 ] || [ ${#split[*]} -gt 4 ] ; then
-        echo "Invalid IP"
-        exit 1
-    fi
-
-    # SUBNET MASK HANDLING
-    read -p "Subnet Mask(CIDR): " mask
-    if [ $mask -gt 32 ] || [ $mask -lt 24 ]; then
-        echo "Invalid mask"
-        exit 1
-    fi
-
-    # CALCULATIONS
-    hosts=$(( 2**(32-$mask) ))
-    subnets=$(( 2**($mask-24) ))
-    last_net=0 
-    last_broadcast=$((hosts-1))
 
     echo "| ID | ENDEREÇO_DE_REDE | PRIMEIRO_HOST | ÚLTIMO_HOST | BROADCAST |"
     i=1
