@@ -4,12 +4,14 @@ conv() {
     echo "| ID | ENDEREÇO_DE_REDE | PRIMEIRO_HOST | ÚLTIMO_HOST | BROADCAST |"
     i=1
     while [ $i -le $subnets ];
-    do
+    do  
+        # Encontrando a faixa de hosts
         first_host=$(( $last_net + 1 ))
         last_host=$(( $last_broadcast - 1 ))
 
         echo "| ${i} | ${split[0]}.${split[1]}.${split[2]}.${last_net} | ${split[0]}.${split[1]}.${split[2]}.${first_host} | ${split[0]}.${split[1]}.${split[2]}.${last_host} | ${split[0]}.${split[1]}.${split[2]}.${last_broadcast} |";   
 
+        # Encontrando os octetos de rede e broadcast
         last_net=$((last_net + hosts))
         last_broadcast=$((last_broadcast + hosts))
         
@@ -41,7 +43,7 @@ echo "--- SubnetDotSh --- Calculadora IPv4 ---";
 echo "----- por: <ogabrielpereira@pm.me> -----";
 echo "----------------------------------------";
 echo "Digite 1 para converter de /24 para /25../32."
-echo "Digite 2 para achar apenas as informações do endereço ip informado."
+echo "Digite 2 para achar apenas as informações do endereço IP informado."
 read -p "Opção(Padrão 1): " c
 if [ -z $c ]; then
     echo "Opção padrão selecionada."
