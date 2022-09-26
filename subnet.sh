@@ -1,13 +1,13 @@
 #!/bin/bash
 DARKGRAY='\033[1;30m'
-RED='\033[0;31m'    
+RED='\033[1;31m'    
 LIGHTRED='\033[1;31m'
-GREEN='\033[0;32m'    
+GREEN='\033[1;32m'    
 YELLOW='\033[1;33m'
-BLUE='\033[0;34m'    
-PURPLE='\033[0;35m'    
+BLUE='\033[1;34m'    
+PURPLE='\033[1;35m'    
 LIGHTPURPLE='\033[1;35m'
-CYAN='\033[0;36m'    
+CYAN='\033[1;36m'    
 WHITE='\033[1;37m'
 SET='\033[0m'
 conv() {
@@ -49,13 +49,13 @@ find() {
 
 clear;
 echo -e "${GREEN}----------------------------------------${SET}";
-echo -e "${GREEN}--- SubnetDotSh --- Calculadora IPv4 ---${SET}";
+echo -e "${GREEN}--- ${WHITE}SubnetDotSh${SET} ${GREEN}---${SET} ${WHITE}Calculadora IPv4${SET} ---${SET}";
 echo -e "${GREEN}----- por: <ogabrielpereira@pm.me> -----${SET}";
 echo -e "${GREEN}----------------------------------------${SET}";
-echo -e "Digite 1 para converter de /24 para /25../32."
-echo -e "Digite 2 para achar apenas as informações do endereço IP informado."
-read -p "Opção(Padrão 1): " c
-if [ -z $c ]; then
+echo -e "${CYAN}Digite${SET} ${DARKGRAY}1${SET} ${CYAN}para converter de /24 para /25../32.${SET}";
+echo -e "${CYAN}Digite${SET} ${DARKGRAY}2${SET} ${CYAN}para achar apenas as informações do endereço IP informado.${SET}";
+read -p "Opção(Padrão 1):" option;
+if [ -z $option ]; then
     echo -e "${YELLOW}Opção padrão selecionada.${SET}"
 fi
 
@@ -91,7 +91,7 @@ echo -e "${BLUE}Nova Máscara de sub-rede:${SET} ${DARKGRAY}255.255.255.$((256-$
 echo -e "${BLUE}Número de hosts por sub-rede:${SET} ${DARKGRAY}$((hosts-2)) ${SET}"
 echo -e "${BLUE}Número de sub-redes:${SET} ${DARKGRAY}$subnets ${SET}"
 
-case $c in
+case $option in
     1)
         conv | column -t
         ;;
