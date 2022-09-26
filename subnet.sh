@@ -54,9 +54,9 @@ echo -e "${GREEN}----- por: <ogabrielpereira@pm.me> -----${SET}";
 echo -e "${GREEN}----------------------------------------${SET}";
 echo -e "${CYAN}Digite${SET} ${DARKGRAY}1${SET} ${CYAN}para converter de /24 para /25../32.${SET}";
 echo -e "${CYAN}Digite${SET} ${DARKGRAY}2${SET} ${CYAN}para achar apenas as informações do endereço IP informado.${SET}";
-read -p "Opção(Padrão 1):" option;
+echo -e "Opção(Padrão 1): \c" && read -n 1 option && echo "";
 if [ -z $option ]; then
-    echo -e "${YELLOW}Opção padrão selecionada.${SET}"
+    echo -e "${YELLOW}Opção padrão selecionada.${SET}";
 fi
 
 # IP HANDLING
