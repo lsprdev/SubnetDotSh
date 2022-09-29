@@ -1,15 +1,13 @@
 #!/bin/bash
 DARKGRAY='\033[1;30m'
 RED='\033[1;31m'    
-LIGHTRED='\033[1;31m'
 GREEN='\033[1;32m'    
 YELLOW='\033[1;33m'
 BLUE='\033[1;34m'    
-PURPLE='\033[1;35m'    
-LIGHTPURPLE='\033[1;35m'
 CYAN='\033[1;36m'    
 WHITE='\033[1;37m'
 SET='\033[0m'
+
 conv() {
     echo -e "${GREEN}| ID | ENDEREÇO_DE_REDE | PRIMEIRO_HOST | ÚLTIMO_HOST | BROADCAST |${SET}"
     i=1
@@ -63,6 +61,10 @@ fi
 read -p "Endereço IP: " ip 
 split=(${ip//./ }) # Split the IP address into 4 octets
 if [ ${#split[*]} -lt 4 ] || [ ${#split[*]} -gt 4 ] ; then
+    echo -e "${RED}IP Inválido!${SET}"
+    exit 1
+fi
+if [ ${split[0]} -gt 255 ] || [ ${split[1]} -gt 255 ] || [ ${split[2]} -gt 255 ] || [ ${split[3]} -gt 255 ]; then
     echo -e "${RED}IP Inválido!${SET}"
     exit 1
 fi
